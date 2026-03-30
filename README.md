@@ -1,12 +1,3 @@
-Bhai, **Markdown formatting thoda gadbad ho gaya hai!** 
-
-Badges ke brackets galat lag gaye hain. Main **fix karke deta hoon** — ab sahi dikhega.
-
----
-
-## ✅ Corrected README.md — Proper Format
-
-```markdown
 # 🌌 Xorion Web3 OS
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
