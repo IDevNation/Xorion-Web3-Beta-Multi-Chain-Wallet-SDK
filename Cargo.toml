@@ -1,6 +1,9 @@
+[workspace]
+members = [".", "xorion-scheme"]
+
 [package]
 name = "xorion-wallet-sdk"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2021"
 description = "Multi-chain wallet SDK for Xorion Web3 OS"
 license = "MIT"
@@ -37,3 +40,7 @@ path = "examples/rpc_demo.rs"
 [[example]]
 name = "contract_demo"
 path = "examples/contract_demo.rs"
+
+[[example]]
+name = "kernel_demo"
+path = "examples/kernel_demo.rs"
