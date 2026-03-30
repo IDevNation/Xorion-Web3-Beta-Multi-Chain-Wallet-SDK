@@ -1,0 +1,20 @@
+[package]
+name = "xorion-wallet-sdk"
+version = "0.1.0"
+edition = "2021"
+description = "Multi-chain wallet SDK for Xorion Web3 OS"
+license = "MIT"
+
+[dependencies]
+bip39 = "2.0"
+bip32 = "0.5"
+secp256k1 = { version = "0.28", features = ["rand"] }
+sha3 = "0.10"
+hex = "0.4"
+thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+zeroize = { version = "1.6", features = ["derive"] }
+
+[[example]]
+name = "demo"
+path = "examples/demo.rs"
