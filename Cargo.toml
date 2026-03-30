@@ -1,11 +1,15 @@
+[workspace]
+members = [".", "xorion-scheme"]
+
 [package]
 name = "xorion-wallet-sdk"
-version = "0.1.0"
+version = "0.4.0"
 edition = "2021"
 description = "Multi-chain wallet SDK for Xorion Web3 OS"
 license = "MIT"
 
 [dependencies]
+# Phase 1 — wallet & key derivation
 bip39 = "2.0"
 bip32 = "0.5"
 secp256k1 = { version = "0.28", features = ["rand"] }
@@ -15,6 +19,28 @@ thiserror = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 zeroize = { version = "1.6", features = ["derive"] }
 
+# Phase 2 — RPC & transaction broadcasting
+tokio = { version = "1.35", features = ["full"] }
+reqwest = { version = "0.11", features = ["json"] }
+serde_json = "1.0"
+async-trait = "0.1"
+
+# Phase 3 — smart contract interaction
+ethabi = "18.0"
+tiny-keccak = { version = "2.0", features = ["keccak"] }
+
 [[example]]
 name = "demo"
 path = "examples/demo.rs"
+
+[[example]]
+name = "rpc_demo"
+path = "examples/rpc_demo.rs"
+
+[[example]]
+name = "contract_demo"
+path = "examples/contract_demo.rs"
+
+[[example]]
+name = "kernel_demo"
+path = "examples/kernel_demo.rs"
