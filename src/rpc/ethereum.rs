@@ -63,6 +63,24 @@ impl EthereumProvider {
         parse_hex_u64(hex_str)
     }
 
+    /// Execute a read-only `eth_call` against a contract.
+    ///
+    /// `to` is the contract address, `data` is the ABI-encoded calldata
+    /// (with `0x` prefix). Returns the raw hex-encoded return data.
+    pub async fn call(&self, to: &str, data: &str) -> Result<String> {
+        let resp = self
+            .rpc_call(
+                "eth_call",
+                json!([{"to": to, "data": data}, "latest"]),
+            )
+            .await?;
+        resp.result
+            .as_ref()
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_string())
+            .ok_or_else(|| WalletError::InvalidResponse("eth_call returned no data".into()))
+    }
+
     /// Get the current chain ID.
     pub async fn get_chain_id(&self) -> Result<u64> {
         let resp = self.rpc_call("eth_chainId", json!([])).await?;
