@@ -26,6 +26,12 @@ pub enum WalletError {
 
     #[error("network error: {0}")]
     NetworkError(String),
+
+    #[error("ABI encoding error: {0}")]
+    AbiError(String),
+
+    #[error("contract error: {0}")]
+    ContractError(String),
 }
 
 impl From<reqwest::Error> for WalletError {
@@ -37,6 +43,12 @@ impl From<reqwest::Error> for WalletError {
 impl From<serde_json::Error> for WalletError {
     fn from(e: serde_json::Error) -> Self {
         WalletError::InvalidResponse(e.to_string())
+    }
+}
+
+impl From<ethabi::Error> for WalletError {
+    fn from(e: ethabi::Error) -> Self {
+        WalletError::AbiError(e.to_string())
     }
 }
 
