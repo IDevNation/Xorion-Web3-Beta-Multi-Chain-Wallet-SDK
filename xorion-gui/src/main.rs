@@ -340,8 +340,8 @@ fn App() -> Element {
 
     // Wallet state
     let mut wallet_initialized = use_signal(|| false);
-    let mut eth_address = use_signal(|| String::new());
-    let mut sol_address = use_signal(|| String::new());
+    let mut eth_address = use_signal(String::new);
+    let mut sol_address = use_signal(String::new);
     let eth_balance = use_signal(|| "0".to_string());
     let sol_balance = use_signal(|| "0".to_string());
 

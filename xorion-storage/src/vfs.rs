@@ -120,7 +120,7 @@ impl VirtualFs {
         let path = normalize_path(path);
         self.entries
             .get(&path)
-            .ok_or_else(|| StorageError::NotFound(path))
+            .ok_or(StorageError::NotFound(path))
     }
 
     /// List immediate children of a directory.

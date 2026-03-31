@@ -1,6 +1,6 @@
 use xorion_governance::{
     DelegationRegistry, GovernorAbi, Proposal, ProposalParams, ProposalState, Timelock, Treasury,
-    Vote, VoteType, VotingRecord,
+    VoteType, VotingRecord,
 };
 
 // ── Full proposal lifecycle ───────────────────────────────

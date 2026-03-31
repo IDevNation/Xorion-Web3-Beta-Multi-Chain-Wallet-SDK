@@ -5,9 +5,9 @@ use dioxus::prelude::*;
 #[component]
 pub fn Send(eth_address: String, sol_address: String) -> Element {
     let mut selected_chain = use_signal(|| "ethereum".to_string());
-    let mut recipient = use_signal(|| String::new());
-    let mut amount = use_signal(|| String::new());
-    let mut tx_status = use_signal(|| String::new());
+    let mut recipient = use_signal(String::new);
+    let mut amount = use_signal(String::new);
+    let mut tx_status = use_signal(String::new);
 
     let on_send = move |_| {
         let chain = selected_chain.read().clone();
