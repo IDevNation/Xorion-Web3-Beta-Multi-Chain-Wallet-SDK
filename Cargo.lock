@@ -7143,6 +7143,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "xorion-governance"
+version = "0.1.0"
+dependencies = [
+ "hex",
+ "serde",
+ "serde_json",
+ "sha3",
+ "tempfile",
+ "thiserror",
+ "tracing",
+ "xorion-wallet-sdk",
+]
+
+[[package]]
 name = "xorion-gui"
 version = "0.1.0"
 dependencies = [
