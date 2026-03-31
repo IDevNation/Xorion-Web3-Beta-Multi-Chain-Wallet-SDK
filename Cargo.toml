@@ -1,5 +1,5 @@
 [workspace]
-members = [".", "xorion-scheme", "xorion-gui", "xorion-runtime", "xorion-privacy", "xorion-storage"]
+members = [".", "xorion-scheme", "xorion-gui", "xorion-runtime", "xorion-privacy", "xorion-storage", "xorion-governance"]
 
 [package]
 name = "xorion-wallet-sdk"
