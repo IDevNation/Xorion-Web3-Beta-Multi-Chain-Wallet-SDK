@@ -7260,9 +7260,14 @@ dependencies = [
  "serde",
  "serde_json",
  "sha3",
+ "tempfile",
  "thiserror",
  "tiny-keccak",
  "tokio",
+ "xorion-governance",
+ "xorion-privacy",
+ "xorion-runtime",
+ "xorion-storage",
  "zeroize",
 ]
 
