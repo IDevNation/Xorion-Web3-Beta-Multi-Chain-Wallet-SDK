@@ -141,9 +141,6 @@ impl WalletHandler {
     }
 }
 
-// Bring sha3 into scope for sign_transaction
-use sha3;
-
 #[cfg(test)]
 mod tests {
     use super::*;

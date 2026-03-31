@@ -71,11 +71,12 @@ impl Encryption {
         }
 
         let (nonce_bytes, ciphertext) = encrypted.split_at(12);
-        let nonce = aes_gcm::Nonce::from_slice(nonce_bytes);
+        let nonce_arr: [u8; 12] = nonce_bytes.try_into().unwrap();
+        let nonce = aes_gcm::Nonce::from(nonce_arr);
         let cipher = Aes256Gcm::new(&self.key.into());
 
         cipher
-            .decrypt(nonce, ciphertext)
+            .decrypt(&nonce, ciphertext)
             .map_err(|e| StorageError::Encryption(format!("decrypt failed: {e}")))
     }
 }
