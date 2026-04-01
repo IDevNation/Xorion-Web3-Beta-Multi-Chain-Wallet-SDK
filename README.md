@@ -1,6 +1,6 @@
-# Xorion Web3 SDK
+# X-OS (XOS) — The Web3-Native Operating System
 
-[![Crates.io](https://img.shields.io/crates/v/xorion-sdk.svg)](https://crates.io/crates/xorion-sdk)
+[![Crates.io](https://img.shields.io/crates/v/xos-sdk.svg)](https://crates.io/crates/xos-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
 [![Tests](https://img.shields.io/badge/tests-229%20passing-brightgreen.svg)](#)
@@ -8,7 +8,7 @@
 
 > **The Web3-Native Operating System** — Built in Rust. Web3 at the kernel level.
 
-Xorion is a modular, multi-chain Web3 SDK and decentralized operating system where blockchain primitives live at the kernel level. One SDK to rule all chains.
+X-OS (formerly Xorion Web3 OS) is a modular, multi-chain Web3 SDK and decentralized operating system where blockchain primitives live at the kernel level. One SDK to rule all chains. Part of the XORION Ecosystem.
 
 ---
 

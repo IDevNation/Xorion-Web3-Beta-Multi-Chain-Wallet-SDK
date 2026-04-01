@@ -85,7 +85,7 @@ Any other relevant information
 
 ⚠️ **Do NOT report security vulnerabilities through public channels!**
 
-For security issues, please email: **security@xorion.io**
+For security issues, please email: **security@x-os.network**
 
 See our [Security Policy](SECURITY.md) for detailed information on responsible disclosure.
 

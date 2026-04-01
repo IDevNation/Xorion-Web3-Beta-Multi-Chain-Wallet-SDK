@@ -94,7 +94,7 @@ Community-driven development:
 
 - **Documentation Issues**: Open a GitHub issue
 - **Questions**: Join our [Discord](https://discord.gg/xorion) *(placeholder)*
-- **Security Reports**: Email security@xorion.io
+- **Security Reports**: Email security@x-os.network
 - **General Support**: See [SUPPORT.md](../SUPPORT.md)
 
 ## 🗺️ Documentation Roadmap

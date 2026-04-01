@@ -15,7 +15,7 @@ We take the security of Xorion seriously. If you believe you have found a securi
 
 **Please do NOT report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via email at **security@xorion.io** with the following information:
+Instead, please report them via email at **security@x-os.network** with the following information:
 
 - Description of the vulnerability
 - Steps to reproduce the issue

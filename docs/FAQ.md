@@ -93,7 +93,7 @@ Yes, core components undergo regular security audits by reputable firms. Audit r
 
 ### What if I find a security vulnerability?
 
-**DO NOT disclose publicly!** Email: **security@xorion.io**
+**DO NOT disclose publicly!** Email: **security@x-os.network**
 
 See our [Security Policy](SECURITY.md) for responsible disclosure process.
 

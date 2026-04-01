@@ -1,10 +1,10 @@
 [package]
-name = "xorion-webapp"
+name = "xos-webapp"
 version = "1.0.0"
 edition = "2021"
-description = "Xorion Web3 Wallet - Browser-based Web Application"
+description = "X-OS Web3 Wallet - Browser-based Web Application"
 license = "MIT"
-repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
+repository = "https://github.com/IDevNation/X-OS-Web3-Beta-Multi-Chain-Wallet-SDK"
 
 [dependencies]
 dioxus = { version = "0.5", features = ["web"] }

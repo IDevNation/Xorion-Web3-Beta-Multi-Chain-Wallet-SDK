@@ -1,4 +1,4 @@
-// Main JavaScript for Xorion Website
+// Main JavaScript for X-OS Website
 
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for anchor links
@@ -69,5 +69,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('🚀 Xorion Website Loaded Successfully!');
+    console.log('🚀 X-OS Website Loaded Successfully!');
 });
