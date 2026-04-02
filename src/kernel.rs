@@ -19,7 +19,11 @@
 //! ```
 
 #[cfg(target_family = "unix")]
+#[cfg(target_family = "unix")]
 use std::os::unix::net::UnixStream;
+
+#[cfg(target_family = "windows")]
+use std::net::TcpStream as UnixStream;
 
 #[cfg(target_family = "windows")]
 use std::net::TcpStream as UnixStream;
