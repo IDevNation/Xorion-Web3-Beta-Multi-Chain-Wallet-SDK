@@ -7143,8 +7143,29 @@ dependencies = [
 ]
 
 [[package]]
-name = "xorion-core"
-version = "0.1.0"
+name = "xorion-sdk"
+version = "1.0.0"
+dependencies = [
+ "async-trait",
+ "bip32",
+ "bip39",
+ "ethabi",
+ "hex",
+ "log",
+ "reqwest 0.11.27",
+ "secp256k1 0.28.2",
+ "serde",
+ "serde_json",
+ "sha3",
+ "thiserror",
+ "tiny-keccak",
+ "tokio",
+ "zeroize",
+]
+
+[[package]]
+name = "xos-core"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "hex",
@@ -7162,8 +7183,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "xorion-governance"
-version = "0.1.0"
+name = "xos-governance"
+version = "1.0.0"
 dependencies = [
  "hex",
  "serde",
@@ -7176,8 +7197,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "xorion-gui"
-version = "0.1.0"
+name = "xos-gui"
+version = "1.0.0"
 dependencies = [
  "dioxus",
  "hex",
@@ -7189,8 +7210,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "xorion-ipfs"
-version = "0.1.0"
+name = "xos-ipfs"
+version = "1.0.0"
 dependencies = [
  "aes-gcm",
  "argon2",
@@ -7210,8 +7231,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "xorion-scheme"
-version = "0.1.0"
+name = "xos-scheme"
+version = "1.0.0"
 dependencies = [
  "env_logger",
  "hex",
@@ -7225,33 +7246,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "xorion-sdk"
-version = "0.4.0"
-dependencies = [
- "async-trait",
- "bip32",
- "bip39",
- "ethabi",
- "hex",
- "reqwest 0.11.27",
- "secp256k1 0.28.2",
- "serde",
- "serde_json",
- "sha3",
- "tempfile",
- "thiserror",
- "tiny-keccak",
- "tokio",
- "xorion-core",
- "xorion-governance",
- "xorion-ipfs",
- "xorion-zk",
- "zeroize",
-]
-
-[[package]]
-name = "xorion-zk"
-version = "0.1.0"
+name = "xos-zk"
+version = "1.0.0"
 dependencies = [
  "ark-bn254",
  "ark-ff",
