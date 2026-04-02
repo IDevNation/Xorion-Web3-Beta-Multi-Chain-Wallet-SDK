@@ -1,5 +1,5 @@
 [package]
-name = "xorion-scheme"
+name = "xos-scheme"
 version = "1.0.0"
 edition = "2021"
 description = "X-OS Web3 wallet scheme daemon for Redox OS"
