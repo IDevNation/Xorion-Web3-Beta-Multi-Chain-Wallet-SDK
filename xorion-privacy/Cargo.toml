@@ -4,7 +4,7 @@ version = "1.0.0"
 edition = "2021"
 description = "Xorion zk-SNARKs Privacy Layer — zero-knowledge proofs for private transactions"
 license = "MIT"
-repository = "https://github.com/IDevNation/xorion-web3-os"
+repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 
 [dependencies]
 ark-ff = "0.4"
