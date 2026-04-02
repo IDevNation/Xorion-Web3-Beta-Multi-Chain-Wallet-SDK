@@ -26,7 +26,7 @@ fn main() {
     }
 }
 
-fn handle_client(mut stream: TcpStream) {
+fn handle_client(stream: TcpStream) {
     let reader: BufReader<&TcpStream> = BufReader::new(&stream);
     let mut writer = stream.try_clone().expect("failed to clone stream");
 
