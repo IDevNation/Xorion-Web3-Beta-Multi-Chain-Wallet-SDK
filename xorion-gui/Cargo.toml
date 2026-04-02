@@ -1,5 +1,5 @@
 [package]
-name = "xorion-gui"
+name = "xos-gui"
 version = "1.0.0"
 edition = "2021"
 description = "X-OS Web3 OS — Desktop wallet GUI"
