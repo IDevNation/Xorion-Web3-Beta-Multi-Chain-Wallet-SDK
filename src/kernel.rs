@@ -1,7 +1,6 @@
-// X-OS Kernel Interface
+// X-OS Kernel Interface — Cross-platform wallet client
 
-use std::io::{Read, Write};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub enum WalletRequest {
@@ -19,12 +18,16 @@ pub enum WalletResponse {
 }
 
 pub struct WalletClient {
-    stream: Option<std::net::TcpStream>,
+    // Windows support — placeholder for future socket connection
+    #[allow(dead_code)]
+    _stream: Option<std::net::TcpStream>,
 }
 
 impl WalletClient {
     pub fn new() -> Result<Self, String> {
-        Ok(Self { stream: None })
+        // For now, return a client without connection
+        // Scheme daemon is optional on Windows
+        Ok(Self { _stream: None })
     }
     
     pub fn wallet_eth_address(&mut self, buf: &mut [u8]) -> Result<usize, String> {
