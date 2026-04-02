@@ -1,4 +1,4 @@
-# Xorion Web3 OS v1.0.0-beta
+# X-OS v1.0.0-beta
 
 **Release Date:** March 2026
 **Status:** Beta

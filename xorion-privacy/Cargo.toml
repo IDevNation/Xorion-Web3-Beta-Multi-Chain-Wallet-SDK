@@ -2,7 +2,7 @@
 name = "xorion-zk"
 version = "1.0.0"
 edition = "2021"
-description = "Xorion zk-SNARKs Privacy Layer — zero-knowledge proofs for private transactions"
+description = "X-OS zk-SNARKs Privacy Layer — zero-knowledge proofs for private transactions"
 license = "MIT"
 repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 

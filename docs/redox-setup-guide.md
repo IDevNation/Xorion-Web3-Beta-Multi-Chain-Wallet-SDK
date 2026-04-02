@@ -1,4 +1,4 @@
-# Redox OS Setup Guide for Xorion Web3 OS
+# Redox OS Setup Guide for X-OS
 
 ## Prerequisites
 

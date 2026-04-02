@@ -1,114 +1,33 @@
-# Xorion Web3 SDK
+# X-OS (XOS) — The Web3-Native Operating System
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)
-![Status](https://img.shields.io/badge/status-beta-blue.svg)
-![Tests](https://img.shields.io/badge/tests-229%20passing-brightgreen.svg)
-![Version](https://img.shields.io/badge/version-v1.0.0--beta.1-blue.svg)
-![Release](https://img.shields.io/github/v/release/IDevNation/xorion-web3-os?include_prereleases&label=release)
+[![Crates.io](https://img.shields.io/crates/v/xos-sdk.svg)](https://crates.io/crates/xos-sdk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
+[![Tests](https://img.shields.io/badge/tests-229%20passing-brightgreen.svg)](#)
+[![Version](https://img.shields.io/badge/version-v1.0.0--beta.1-blue.svg)](https://github.com/IDevNation/xorion-web3-os/releases)
 
 > **The Web3-Native Operating System** — Built in Rust. Web3 at the kernel level.
 
----
-
-## 🎯 Vision
-
-Xorion is a decentralized operating system where blockchain primitives live at the kernel level — not browser extensions. One OS to rule all chains (Ethereum + Solana).
+X-OS (formerly Xorion Web3 OS) is a modular, multi-chain Web3 SDK and decentralized operating system where blockchain primitives live at the kernel level. One SDK to rule all chains. Part of the XORION Ecosystem.
 
 ---
 
-## ✨ Core Features
+## Getting Started
 
-| Feature | Description | Status |
-|---------|-------------|--------|
-| 🔐 **Multi-Chain Wallet** | BIP39/BIP44 HD wallet (Ethereum + Solana) | ✅ Complete |
-| ⛓️ **Native Blockchain SDK** | Direct RPC integration (ETH + SOL) | ✅ Complete |
-| 📋 **Smart Contracts** | ABI parsing, function calls, events | ✅ Complete |
-| 💰 **Token Standards** | ERC20, ERC721 (NFTs) support | ✅ Complete |
-| 🔄 **DeFi Protocols** | Uniswap, Aave integration | ✅ Complete |
-| 🏗️ **Redox Scheme** | wallet:/ filesystem daemon | ✅ Complete |
-| 🎨 **Desktop GUI** | Dioxus-based wallet interface | ✅ Complete |
-| 🧩 **WASM Runtime** | Wasmtime sandbox, wallet bridge, IPFS loader | ✅ Complete |
-| 🤫 **ZK Privacy** | Groth16 zk-SNARKs — private tx, age verify, balance proofs | ✅ Complete |
-| 📦 **IPFS Storage** | IPFS client, AES-256-GCM encryption, virtual FS, pinning, cache | ✅ Complete |
+### Installation
 
----
+Add Xorion to your project:
 
-## 🗺️ Development Roadmap
-
-| Phase | Description | Status | Tests |
-|-------|-------------|--------|-------|
-| **Phase 1** | Multi-Chain SDK (Wallet, ETH/SOL addresses) | ✅ Complete | 5 |
-| **Phase 2** | RPC Integration & Broadcasting | ✅ Complete | 3 |
-| **Phase 3** | Smart Contract Interaction (ERC20, Uniswap) | ✅ Complete | 15 |
-| **Phase 4** | Redox Scheme Daemon (wallet:/) | ✅ Complete | 10 |
-| **Phase 5** | Desktop GUI (Dioxus) | ✅ Complete | 3 |
-| **Phase 6** | WASM dApp Runtime (Wasmtime) | ✅ Complete | 33 |
-| **Phase 7** | zk-SNARKs Privacy Layer (Groth16) | ✅ Complete | 38 |
-| **Phase 8** | IPFS Native Filesystem | ✅ Complete | 54 |
-| **Phase 9** | DAO Governance Module | ✅ Complete | 54 |
-| **Phase 10** | Beta Release (v1.0.0-beta) | ✅ Complete | 14 |
-
-**✅ Total Tests: 229/229 Passing**
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│              XORION WEB3 OS - FULL STACK                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌────────────────────────────────────────────────────┐    │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         DAO Governance — Phase 9                   │    │
-│  │    Proposals │ Voting │ Delegation │ Treasury      │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         IPFS Storage — Phase 8                     │    │
-│  │    IpfsClient │ Encryption │ VFS │ Pinning │ Cache │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         ZK Privacy (Groth16) — Phase 7             │    │
-│  │    PrivateTx │ AgeVerify │ BalanceProof            │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         WASM Runtime (Wasmtime) — Phase 6          │    │
-│  │    Sandbox │ WalletBridge │ IPFS Loader            │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         GUI (Dioxus Desktop) — Phase 5             │    │
-│  │    Dashboard │ Send │ Receive │ Settings           │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         Redox Scheme (wallet:/) — Phase 4          │    │
-│  │    Daemon │ Protocol │ Keyring │ Handler           │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         Xorion SDK — Phases 1-3                    │    │
-│  │    Wallet │ RPC │ Contract │ Tokens │ DeFi         │    │
-│  └────────────────────────────────────────────────────┘    │
-│                           ⬇️                                │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         Blockchain Layer                           │    │
-│  │    Ethereum (JSON-RPC) │ Solana (JSON-RPC)        │    │
-│  └────────────────────────────────────────────────────┘    │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+```toml
+[dependencies]
+xorion-sdk = "0.4.0"          # Core wallet + RPC + contracts
+xorion-core = "0.1.0"         # WASM dApp runtime
+xorion-governance = "0.1.0"   # DAO governance
+xorion-ipfs = "0.1.0"         # IPFS storage + encryption
+xorion-zk = "0.1.0"           # zk-SNARKs privacy layer
 ```
 
----
-
-## Installation
-
-### From source
+Or build from source:
 
 ```bash
 git clone https://github.com/IDevNation/xorion-web3-os.git
@@ -116,155 +35,166 @@ cd xorion-web3-os
 cargo build --workspace
 ```
 
-### As a dependency
+### Quick Start
 
-Add to your `Cargo.toml`:
+```rust
+use xorion_sdk::Wallet;
 
-```toml
-[dependencies]
-xorion-wallet-sdk = { git = "https://github.com/IDevNation/xorion-web3-os.git", tag = "v1.0.0-beta.1" }
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Create a new HD wallet from a mnemonic
+    let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about";
+    let wallet = Wallet::from_mnemonic(mnemonic)?;
+
+    // Derive addresses for multiple chains
+    println!("ETH: {}", wallet.derive_eth_address()?);
+    println!("SOL: {}", wallet.derive_solana_address()?);
+
+    Ok(())
+}
+```
+
+See [examples/](examples/) for more: wallet creation, DAO voting, IPFS uploads, private transfers.
+
+---
+
+## Features
+
+| Crate | Feature | Description |
+|-------|---------|-------------|
+| `xorion-sdk` | Multi-Chain Wallet | BIP-39/BIP-44 HD wallet (Ethereum + Solana) |
+| `xorion-sdk` | RPC Providers | Async JSON-RPC for ETH and SOL |
+| `xorion-sdk` | Smart Contracts | ABI encoding, ERC-20, ERC-721, Uniswap V2 |
+| `xorion-core` | WASM Runtime | Wasmtime sandbox with wallet bridge |
+| `xorion-zk` | ZK Privacy | Groth16 zk-SNARKs (private tx, age verify, balance proofs) |
+| `xorion-ipfs` | IPFS Storage | Encrypted file storage with AES-256-GCM + Argon2 |
+| `xorion-governance` | DAO Governance | Proposals, token-weighted voting, delegation, treasury |
+
+Additional workspace crates (not published to crates.io):
+- `xorion-scheme` — Redox OS `wallet:/` filesystem daemon
+- `xorion-gui` — Dioxus desktop wallet interface
+
+---
+
+## Examples
+
+```bash
+# Wallet creation
+cargo run --example simple_wallet
+
+# DAO governance voting
+cargo run --example dao_voting
+
+# IPFS encrypted upload
+cargo run --example ipfs_upload
+
+# ZK private transfer proof
+cargo run --example private_transfer
+
+# Legacy demos
+cargo run --example demo              # Basic wallet
+cargo run --example rpc_demo          # RPC integration
+cargo run --example contract_demo     # Smart contracts
+cargo run --example kernel_demo       # Full kernel demo
 ```
 
 ---
 
-## Quick Start
+## Architecture
 
-### Prerequisites
-- Rust 1.70 or later
-- For GUI: `sudo apt install libgtk-3-dev libwebkit2gtk-4.1-dev libxdo-dev`
+```
+xorion-web3-os/
+├── src/                        # xorion-sdk: Core SDK (Phases 1-3)
+│   ├── wallet.rs               # BIP39/BIP44 HD wallet
+│   ├── rpc/                    # ETH + SOL JSON-RPC providers
+│   ├── contract/               # ABI, ERC20, Uniswap
+│   └── kernel.rs               # WalletClient unified API
+│
+├── xorion-runtime/             # xorion-core: WASM Runtime (Phase 6)
+│   └── src/
+│       ├── sandbox.rs          # Permission-based sandbox
+│       ├── api.rs              # WalletBridge host functions
+│       └── ipfs_loader.rs      # IPFS dApp fetcher
+│
+├── xorion-privacy/             # xorion-zk: ZK Privacy (Phase 7)
+│   └── src/
+│       ├── circuits/           # Groth16 R1CS circuits
+│       ├── proof.rs            # ProofSystem (setup, prove, verify)
+│       └── cache.rs            # Proof caching with TTL
+│
+├── xorion-storage/             # xorion-ipfs: IPFS Storage (Phase 8)
+│   └── src/
+│       ├── ipfs.rs             # IPFS HTTP API client
+│       ├── encryption.rs       # AES-256-GCM + Argon2 key derivation
+│       ├── vfs.rs              # Virtual filesystem over IPFS
+│       └── cache.rs            # Disk-backed LRU cache
+│
+├── xorion-governance/          # xorion-governance: DAO (Phase 9)
+│   └── src/
+│       ├── proposal.rs         # Proposal state machine
+│       ├── voting.rs           # Token-weighted voting + quorum
+│       ├── delegation.rs       # Voting power delegation
+│       └── treasury.rs         # DAO treasury management
+│
+├── xorion-scheme/              # Redox wallet:/ daemon (Phase 4)
+├── xorion-gui/                 # Dioxus desktop GUI (Phase 5)
+├── examples/                   # Example applications
+├── tests/integration.rs        # Cross-crate integration tests
+└── .github/workflows/ci.yml    # CI/CD pipeline
+```
 
-### Commands
+---
+
+## Development
 
 ```bash
-# Build entire workspace
+# Build
 cargo build --workspace
 
 # Test (229 tests)
 cargo test --workspace
 
-# Run GUI
+# Lint
+cargo clippy --workspace -- -D warnings
+
+# Docs
+cargo doc --workspace --no-deps --exclude xorion-gui --exclude xorion-scheme --open
+
+# GUI (requires GTK)
+sudo apt install libgtk-3-dev libwebkit2gtk-4.1-dev libxdo-dev
 cargo run -p xorion-gui
-
-# Run WASM runtime demo
-cargo run -p xorion-runtime --example simple_dapp
-
-# Run ZK privacy demo
-cargo run -p xorion-privacy --example privacy_demo
-
-# Run IPFS storage demo
-cargo run -p xorion-storage --example storage_demo
-
-# Run DAO governance demo
-cargo run -p xorion-governance --example governance_demo
-
-# Run examples
-cargo run --example demo              # Wallet creation
-cargo run --example rpc_demo          # RPC integration
-cargo run --example contract_demo     # Smart contracts
-cargo run --example kernel_demo       # Full demo
-```
-
-### Quick Start Example
-
-```rust
-use xorion_sdk::Wallet;
-
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let wallet = Wallet::new("ethereum").await?;
-    println!("Address: {}", wallet.get_address());
-    Ok(())
-}
 ```
 
 ---
 
-## 📁 Project Structure
+## Roadmap
 
-```
-xorion-web3-os/
-├── src/                        # Phases 1-3: Core SDK
-│   ├── wallet.rs               # BIP39, ETH/SOL addresses
-│   ├── rpc/                    # ETH/SOL RPC clients
-│   ├── contract/               # ABI, ERC20, Uniswap
-│   └── kernel.rs               # WalletClient API
-│
-├── xorion-scheme/              # Phase 4: Redox Scheme Daemon
-│   └── src/
-│       ├── main.rs             # wallet:/ scheme
-│       ├── protocol.rs         # JSON wire protocol
-│       └── handler.rs          # Request handler
-│
-├── xorion-gui/                 # Phase 5: Desktop GUI
-│   └── src/
-│       ├── main.rs             # App shell
-│       └── components/
-│           ├── dashboard.rs
-│           ├── send.rs
-│           ├── receive.rs
-│           └── settings.rs
-│
-├── xorion-runtime/             # Phase 6: WASM dApp Runtime
-│   └── src/
-│       ├── runtime.rs          # WasmRuntime (wasmtime engine)
-│       ├── sandbox.rs          # Permission-based sandbox
-│       ├── api.rs              # WalletBridge host functions
-│       └── ipfs_loader.rs      # IPFS dApp fetcher
-│
-├── xorion-privacy/             # Phase 7: zk-SNARKs Privacy
-│   └── src/
-│       ├── circuits/
-│       │   ├── private_tx.rs   # Private transaction circuit
-│       │   ├── age_verify.rs   # Age verification circuit
-│       │   └── balance_proof.rs# Balance proof circuit
-│       ├── proof.rs            # Groth16 ProofSystem
-│       └── cache.rs            # Proof caching with TTL
-│
-├── xorion-storage/             # Phase 8: IPFS Storage
-│   └── src/
-│       ├── ipfs.rs             # IPFS HTTP API client
-│       ├── encryption.rs       # AES-256-GCM + Argon2
-│       ├── vfs.rs              # Virtual filesystem over IPFS
-│       ├── pinning.rs          # Pin management
-│       └── cache.rs            # Disk-backed LRU cache
-│
-├── xorion-governance/          # Phase 9: DAO Governance
-│   └── src/
-│       ├── proposal.rs         # Proposal lifecycle state machine
-│       ├── voting.rs           # Token-weighted voting + quorum
-│       ├── delegation.rs       # Voting power delegation
-│       ├── treasury.rs         # DAO treasury management
-│       ├── timelock.rs         # Execution delay enforcement
-│       └── governor.rs         # Governor contract ABI encoding
-│
-├── examples/                   # Demo applications
-└── Cargo.toml                  # Workspace
-```
+| Phase | Description | Status |
+|-------|-------------|--------|
+| Phase 1 | Multi-Chain Wallet SDK | ✅ Complete |
+| Phase 2 | RPC Integration | ✅ Complete |
+| Phase 3 | Smart Contracts (ERC20, Uniswap) | ✅ Complete |
+| Phase 4 | Redox Scheme Daemon | ✅ Complete |
+| Phase 5 | Desktop GUI (Dioxus) | ✅ Complete |
+| Phase 6 | WASM dApp Runtime | ✅ Complete |
+| Phase 7 | zk-SNARKs Privacy | ✅ Complete |
+| Phase 8 | IPFS Filesystem | ✅ Complete |
+| Phase 9 | DAO Governance | ✅ Complete |
+| Phase 10 | Beta Release | ✅ Complete |
 
 ---
 
-## 📊 Progress
+## Contributing
 
-```
-Phase 1: ████████████████████ 100% ✅
-Phase 2: ████████████████████ 100% ✅
-Phase 3: ████████████████████ 100% ✅
-Phase 4: ████████████████████ 100% ✅
-Phase 5: ████████████████████ 100% ✅
-Phase 6: ████████████████████ 100% ✅
-Phase 7: ████████████████████ 100% ✅
-Phase 8: ████████████████████ 100% ✅
-Phase 9: ████████████████████ 100% ✅
-Phase 10:████████████████████ 100% ✅
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, testing, and PR guidelines.
 
----
+## Changelog
 
-## 📄 License
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+## License
 
 MIT License — see [LICENSE](LICENSE)
 
 ---
 
 **Made with ❤️ for the decentralized web** 🌌
-
-*10 phases complete | 229 tests passing | v1.0.0-beta.1 released*

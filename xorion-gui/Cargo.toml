@@ -2,7 +2,7 @@
 name = "xorion-gui"
 version = "1.0.0"
 edition = "2021"
-description = "Xorion Web3 OS — Desktop wallet GUI"
+description = "X-OS Web3 OS — Desktop wallet GUI"
 license = "MIT"
 
 [dependencies]

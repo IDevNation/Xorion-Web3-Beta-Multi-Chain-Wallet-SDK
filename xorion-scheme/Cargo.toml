@@ -2,7 +2,7 @@
 name = "xorion-scheme"
 version = "1.0.0"
 edition = "2021"
-description = "Xorion Web3 wallet scheme daemon for Redox OS"
+description = "X-OS Web3 wallet scheme daemon for Redox OS"
 license = "MIT"
 
 [dependencies]

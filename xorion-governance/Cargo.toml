@@ -2,7 +2,7 @@
 name = "xorion-governance"
 version = "1.0.0"
 edition = "2021"
-description = "Xorion DAO Governance — proposals, voting, delegation, treasury, timelock"
+description = "X-OS DAO Governance — proposals, voting, delegation, treasury, timelock"
 license = "MIT"
 repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 
