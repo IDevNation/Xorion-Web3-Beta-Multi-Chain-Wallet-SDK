@@ -1,12 +1,12 @@
 [workspace]
-members = [".", "xorion-scheme", "xorion-gui", "xorion-runtime", "xorion-privacy", "xorion-storage", "xorion-governance"]
+members = [".", "xos-scheme", "xos-gui", "xos-runtime", "xos-privacy", "xos-storage", "xos-governance"]
 
 [package]
 name = "xorion-sdk"
 repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 version = "1.0.0"
 edition = "2021"
-description = "Multi-chain wallet SDK for Xorion Web3 OS"
+description = "Multi-chain wallet SDK for X-OS Web3 OS"
 license = "MIT"
 
 [dependencies]
@@ -32,10 +32,10 @@ ethabi = "18.0"
 tiny-keccak = { version = "2.0", features = ["keccak"] }
 
 [dev-dependencies]
-xorion-core = { path = "xorion-runtime" }
-xorion-zk = { path = "xorion-privacy" }
-xorion-ipfs = { path = "xorion-storage" }
-xorion-governance = { path = "xorion-governance" }
+xos-core = { path = "xos-runtime" }
+xos-zk = { path = "xos-privacy" }
+xos-ipfs = { path = "xos-storage" }
+xos-governance = { path = "xos-governance" }
 tempfile = "3.8"
 
 [[example]]

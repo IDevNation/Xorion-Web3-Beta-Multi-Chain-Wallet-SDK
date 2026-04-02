@@ -2,7 +2,7 @@
 name = "xorion-core"
 version = "1.0.0"
 edition = "2021"
-description = "Xorion WASM dApp Runtime — sandboxed execution for Web3 dApps"
+description = "X-OS WASM dApp Runtime — sandboxed execution for Web3 dApps"
 license = "MIT"
 repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 
