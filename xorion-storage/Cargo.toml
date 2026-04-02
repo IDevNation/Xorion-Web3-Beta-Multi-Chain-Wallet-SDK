@@ -1,10 +1,10 @@
 [package]
-name = "xos-ipfs"
+name = "xorion-ipfs"
 version = "1.0.0"
 edition = "2021"
 description = "X-OS IPFS-backed decentralized storage with client-side encryption"
 license = "MIT"
-repository = "https://github.com/IDevNation/xos-web3-os"
+repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 
 [dependencies]
 # Encryption
@@ -26,7 +26,7 @@ tracing = "0.1"
 sha3 = "0.10"
 hex = "0.4"
 
-xos-sdk = { version = "1.0.0", path = ".." }
+xorion-sdk = { version = "1.0.0", path = ".." }
 
 [dev-dependencies]
 tempfile = "3.8"

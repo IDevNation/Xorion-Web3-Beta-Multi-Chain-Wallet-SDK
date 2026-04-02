@@ -1,5 +1,5 @@
 [package]
-name = "xos-scheme"
+name = "xorion-scheme"
 version = "1.0.0"
 edition = "2021"
 description = "X-OS Web3 wallet scheme daemon for Redox OS"
@@ -7,7 +7,7 @@ license = "MIT"
 
 [dependencies]
 # The wallet SDK from Phase 1-3
-xos-sdk = { version = "1.0.0", path = ".." }
+xorion-sdk = { version = "1.0.0", path = ".." }
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }

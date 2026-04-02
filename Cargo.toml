@@ -2,8 +2,8 @@
 members = [".", "xos-scheme", "xos-gui", "xos-runtime", "xos-privacy", "xos-storage", "xos-governance"]
 
 [package]
-name = "xos-sdk"
-repository = "https://github.com/IDevNation/xos-web3-os"
+name = "xorion-sdk"
+repository = "https://github.com/IDevNation/Xorion-Web3-Beta-Multi-Chain-Wallet-SDK"
 version = "1.0.0"
 edition = "2021"
 description = "Multi-chain wallet SDK for X-OS Web3 OS"

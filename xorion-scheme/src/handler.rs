@@ -29,7 +29,7 @@ impl WalletHandler {
 
     /// Allocate a new handle (called on open).
     pub fn open(&self) -> u64 {
-        let mut id = self.next_id.lock().unwrap();
+        let mut id = self.next_id.lock().expect("handler id mutex poisoned");
         let handle = *id;
         *id += 1;
         handle
@@ -37,7 +37,7 @@ impl WalletHandler {
 
     /// Release a handle (called on close).
     pub fn close(&self, handle: u64) {
-        self.wallets.lock().unwrap().remove(&handle);
+        self.wallets.lock().expect("handler wallets mutex poisoned").remove(&handle);
     }
 
     /// Process a single request for the given handle.
@@ -61,7 +61,7 @@ impl WalletHandler {
             Ok(wallet) => {
                 self.wallets
                     .lock()
-                    .unwrap()
+                    .expect("handler wallets mutex poisoned")
                     .insert(handle, ProcessWallet { wallet });
                 WalletResponse::ok("wallet initialized")
             }
@@ -70,7 +70,7 @@ impl WalletHandler {
     }
 
     fn eth_address(&self, handle: u64) -> WalletResponse {
-        let wallets = self.wallets.lock().unwrap();
+        let wallets = self.wallets.lock().expect("handler wallets mutex poisoned");
         match wallets.get(&handle) {
             Some(pw) => match pw.wallet.derive_eth_address() {
                 Ok(addr) => WalletResponse::ok(addr),
@@ -81,7 +81,7 @@ impl WalletHandler {
     }
 
     fn solana_address(&self, handle: u64) -> WalletResponse {
-        let wallets = self.wallets.lock().unwrap();
+        let wallets = self.wallets.lock().expect("handler wallets mutex poisoned");
         match wallets.get(&handle) {
             Some(pw) => match pw.wallet.derive_solana_address() {
                 Ok(addr) => WalletResponse::ok(addr),
@@ -92,7 +92,7 @@ impl WalletHandler {
     }
 
     fn sign_transaction(&self, handle: u64, chain: u32, tx_data: &str) -> WalletResponse {
-        let wallets = self.wallets.lock().unwrap();
+        let wallets = self.wallets.lock().expect("handler wallets mutex poisoned");
         match wallets.get(&handle) {
             Some(_pw) => {
                 // Phase 4 stub — actual signing will use the secp256k1 key
@@ -118,9 +118,6 @@ impl WalletHandler {
     }
 
     fn get_balance(&self, chain: u32, address: &str) -> WalletResponse {
-        // Balance queries go through RPC (Phase 2). In the scheme daemon this
-        // would spawn an async task. For now we return a placeholder showing
-        // the daemon understood the request.
         let chain_name = match chain {
             0 => "ethereum",
             1 => "solana",
@@ -132,7 +129,7 @@ impl WalletHandler {
     }
 
     fn status(&self, handle: u64) -> WalletResponse {
-        let wallets = self.wallets.lock().unwrap();
+        let wallets = self.wallets.lock().expect("handler wallets mutex poisoned");
         let initialized = wallets.contains_key(&handle);
         let total = wallets.len();
         WalletResponse::ok(format!(

@@ -1,5 +1,5 @@
 [package]
-name = "xos-gui"
+name = "xorion-gui"
 version = "1.0.0"
 edition = "2021"
 description = "X-OS Web3 OS — Desktop wallet GUI"
@@ -9,8 +9,8 @@ license = "MIT"
 # Dioxus desktop framework
 dioxus = { version = "0.5", features = ["desktop"] }
 
-# X-OS SDK (wallet, RPC, contracts)
-xos-sdk = { version = "1.0.0", path = ".." }
+# Xorion SDK (wallet, RPC, contracts)
+xorion-sdk = { version = "1.0.0", path = ".." }
 
 # QR code generation for receive addresses
 qrcode = "0.14"

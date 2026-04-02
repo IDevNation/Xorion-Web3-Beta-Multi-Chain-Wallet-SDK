@@ -47,7 +47,14 @@ fn start_unix_socket_server(handler: &WalletHandler) {
                 log::info!("new connection, handle={handle}");
 
                 let reader = BufReader::new(&stream);
-                let mut writer = stream.try_clone().unwrap();
+                let mut writer = match stream.try_clone() {
+                    Ok(w) => w,
+                    Err(e) => {
+                        log::error!("failed to clone stream: {e}");
+                        handler.close(handle);
+                        continue;
+                    }
+                };
 
                 for line in reader.lines() {
                     let line = match line {
@@ -67,7 +74,13 @@ fn start_unix_socket_server(handler: &WalletHandler) {
                         Err(e) => WalletResponse::error(format!("invalid JSON: {e}")),
                     };
 
-                    let resp_json = serde_json::to_string(&response).unwrap();
+                    let resp_json = match serde_json::to_string(&response) {
+                        Ok(j) => j,
+                        Err(e) => {
+                            log::error!("failed to serialize response: {e}");
+                            continue;
+                        }
+                    };
                     let _ = writeln!(writer, "{resp_json}");
                     let _ = writer.flush();
                 }

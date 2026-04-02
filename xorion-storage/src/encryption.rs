@@ -71,7 +71,9 @@ impl Encryption {
         }
 
         let (nonce_bytes, ciphertext) = encrypted.split_at(12);
-        let nonce_arr: [u8; 12] = nonce_bytes.try_into().unwrap();
+        let nonce_arr: [u8; 12] = nonce_bytes
+            .try_into()
+            .map_err(|_| StorageError::Encryption("invalid nonce length".into()))?;
         let nonce = aes_gcm::Nonce::from(nonce_arr);
         let cipher = Aes256Gcm::new(&self.key.into());
 
