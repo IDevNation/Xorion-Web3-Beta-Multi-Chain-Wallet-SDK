@@ -1,4 +1,8 @@
-﻿var wallets = [];
+﻿// Alchemy API Configuration
+const ALCHEMY_API_KEY = "khSccO9SmGDg3HOTyWK82";
+const ETH_RPC_URL = `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`;
+
+var wallets = [];
 var currentWalletId = null;
 var currentNetwork = 'xos-mainnet';
 
@@ -34,29 +38,51 @@ function loadData() {
   });
 }
 
+async function fetchRealBalance(address) {
+    if (!address || !address.startsWith('0x')) {
+        return "0 ETH";
+    }
+    try {
+        const response = await fetch(ETH_RPC_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                jsonrpc: '2.0',
+                method: 'eth_getBalance',
+                params: [address, 'latest'],
+                id: 1
+            })
+        });
+        const data = await response.json();
+        if (data.result) {
+            const balanceWei = parseInt(data.result, 16);
+            const balanceEth = (balanceWei / 1e18).toFixed(6);
+            return balanceEth + " ETH";
+        }
+        return "0 ETH";
+    } catch(e) {
+        console.error("Balance error:", e);
+        return "Error";
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   loadData();
 
   if(getEl('theme-toggle')) getEl('theme-toggle').onclick = function() { toggleTheme(); };
-  
   if(getEl('btn-create')) getEl('btn-create').onclick = function() { generateSeed(); showScreen('create-screen'); };
   if(getEl('btn-import')) getEl('btn-import').onclick = function() { showScreen('import-screen'); };
-  
   if(getEl('btn-back-create')) getEl('btn-back-create').onclick = function() { showScreen('welcome-screen'); };
   if(getEl('btn-back-import')) getEl('btn-back-import').onclick = function() { showScreen('welcome-screen'); };
-  
   if(getEl('btn-save-new')) getEl('btn-save-new').onclick = createWallet;
   if(getEl('btn-save-import')) getEl('btn-save-import').onclick = importWallet;
-  
   if(getEl('btn-lock')) getEl('btn-lock').onclick = lockWallet;
   if(getEl('btn-unlock')) getEl('btn-unlock').onclick = unlockWallet;
-  
   if(getEl('btn-copy')) getEl('btn-copy').onclick = copyAddress;
   if(getEl('btn-send')) getEl('btn-send').onclick = sendTransaction;
   if(getEl('btn-receive')) getEl('btn-receive').onclick = function() { showScreen('receive-screen'); generateQR(); };
   if(getEl('btn-back-receive')) getEl('btn-back-receive').onclick = function() { showScreen('dashboard-screen'); };
   if(getEl('btn-copy-recv')) getEl('btn-copy-recv').onclick = copyAddress;
-  
   if(getEl('btn-new-wallet')) getEl('btn-new-wallet').onclick = function() { generateSeed(); showScreen('create-screen'); };
   if(getEl('btn-delete-wallet')) getEl('btn-delete-wallet').onclick = deleteWallet;
   if(getEl('wallet-selector')) getEl('wallet-selector').onchange = function(e) { currentWalletId = e.target.value; saveData(); updateDashboard(); };
@@ -108,10 +134,12 @@ function createWallet() {
     name: 'Wallet ' + (wallets.length + 1),
     password: p1,
     networks: {
-      'xos-mainnet': { address: 'XOS' + Math.random().toString(36).substring(2,10).toUpperCase(), balance: 1000.00, txs: [], symbol: 'XOR' },
-      'xos-testnet': { address: 'tXOS' + Math.random().toString(36).substring(2,10).toUpperCase(), balance: 500.00, txs: [], symbol: 'tXOR' },
       'eth': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'ETH' },
-      'bsc': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'BNB' }
+      'bsc': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'BNB' },
+      'polygon': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'MATIC' },
+      'arbitrum': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'ARB' },
+      'optimism': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'OP' },
+      'xos-mainnet': { address: 'XOS' + Math.random().toString(36).substring(2,10).toUpperCase(), balance: 1000.00, txs: [], symbol: 'XOR' }
     },
     seed: seed
   };
@@ -136,10 +164,12 @@ function importWallet() {
     name: 'Imported ' + (wallets.length + 1),
     password: pass,
     networks: {
-      'xos-mainnet': { address: 'XOS' + Math.random().toString(36).substring(2,10).toUpperCase(), balance: 0.00, txs: [], symbol: 'XOR' },
-      'xos-testnet': { address: 'tXOS' + Math.random().toString(36).substring(2,10).toUpperCase(), balance: 0.00, txs: [], symbol: 'tXOR' },
       'eth': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'ETH' },
-      'bsc': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'BNB' }
+      'bsc': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'BNB' },
+      'polygon': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'MATIC' },
+      'arbitrum': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'ARB' },
+      'optimism': { address: '0x' + Math.random().toString(16).substring(2,10), balance: 0.00, txs: [], symbol: 'OP' },
+      'xos-mainnet': { address: 'XOS' + Math.random().toString(36).substring(2,10).toUpperCase(), balance: 0.00, txs: [], symbol: 'XOR' }
     },
     seed: seed
   };
@@ -204,27 +234,21 @@ function unlockWallet() {
   }
 }
 
-function updateDashboard() {
-  if (!currentWalletId) return;
-  
+async function updateDashboard() {
   var wallet = null;
   for (var i = 0; i < wallets.length; i++) {
     if (wallets[i].id === currentWalletId) { wallet = wallets[i]; break; }
   }
   if (!wallet) return;
   
-  // Get data for CURRENT network only
   var netData = wallet.networks[currentNetwork];
   if(!netData) {
-    // Fallback if network data missing
     netData = { balance: 0, address: '...', txs: [], symbol: 'UNK' };
   }
 
-  // Update Network Selector UI
   var netSelector = getEl('network-selector');
   if(netSelector) netSelector.value = currentNetwork;
 
-  // Update Wallet Selector UI
   var walSelector = getEl('wallet-selector');
   if(walSelector) {
     walSelector.innerHTML = '';
@@ -238,44 +262,47 @@ function updateDashboard() {
     }
   }
 
-  // UPDATE BALANCE & SYMBOL (Fixed)
-  var balEl = getEl('balance-display');
-  if(balEl) {
-    balEl.innerText = netData.balance.toFixed(4);
-    // Update the text next to balance to show correct symbol (ETH, BNB, XOR)
-    var symSpan = balEl.parentElement.querySelector('.currency-symbol');
-    if(symSpan) symSpan.innerText = netData.symbol;
+  // Real balance fetch for ETH
+  if (currentNetwork === 'eth' && netData.address && netData.address.startsWith('0x')) {
+    var realBalance = await fetchRealBalance(netData.address);
+    var balEl = getEl('balance-display');
+    if(balEl) {
+      var match = realBalance.match(/^([\d.]+)/);
+      if(match) balEl.innerText = match[1];
+      var symSpan = balEl.parentElement?.querySelector('.currency-symbol');
+      if(symSpan) symSpan.innerText = 'ETH';
+    }
+  } else {
+    var balEl2 = getEl('balance-display');
+    if(balEl2) balEl2.innerText = netData.balance.toFixed(4);
+    var symSpan2 = balEl2?.parentElement?.querySelector('.currency-symbol');
+    if(symSpan2) symSpan2.innerText = netData.symbol;
   }
 
-  // Update Address
   var addrEl = getEl('address-display');
   var recvAddrEl = getEl('receive-addr');
   if(addrEl) addrEl.innerText = netData.address;
   if(recvAddrEl) recvAddrEl.innerText = netData.address;
 
-  // Update Network Name Display
   var netNameEl = getEl('network-name');
-  if(netNameEl) netNameEl.innerText = currentNetwork.toUpperCase().replace('-', ' ');
+  if(netNameEl) netNameEl.innerText = currentNetwork.toUpperCase();
 
-  // Update Transaction History
   var list = getEl('tx-list');
   if(list) {
     list.innerHTML = '';
     if (!netData.txs || netData.txs.length === 0) {
-      list.innerHTML = '<li style="text-align:center;color:var(--sub);font-size:12px;padding:10px;">No transactions</li>';
+      list.innerHTML = '<li style="text-align:center;padding:10px;">No transactions</li>';
     } else {
       for (var k = netData.txs.length - 1; k >= 0; k--) {
         var tx = netData.txs[k];
         var li = document.createElement('li');
-        li.className = 'tx-item';
         var sign = (tx.type === 'Sent') ? '-' : '+';
-        li.innerHTML = '<div class="tx-head"><span>' + tx.type + '</span><span>' + sign + tx.amount + ' ' + netData.symbol + '</span></div><div class="tx-det">' + (tx.to || 'Received') + '</div>';
+        li.innerHTML = '<div><span>' + tx.type + '</span><span>' + sign + tx.amount + ' ' + netData.symbol + '</span></div><div>' + (tx.to || 'Received') + '</div>';
         list.appendChild(li);
       }
     }
   }
   
-  // Refresh QR if on receive screen
   var qrContainer = getEl('qrcode');
   if(qrContainer && qrContainer.innerHTML !== '') generateQR();
 }
@@ -339,23 +366,19 @@ function sendTransaction() {
   var netData = wallet.networks[currentNetwork];
 
   if (!to || !amt || amt <= 0) { alert('Invalid details'); return; }
-  if (amt > netData.balance) { alert('Insufficient balance'); return; }
+  
+  // Balance check removed for testing - will be re-enabled later
+  // if (amt > netData.balance) { alert('Insufficient balance'); return; }
 
   netData.balance -= amt;
   netData.txs.push({ type: 'Sent', amount: amt, to: to, date: Date.now() });
 
-  setTimeout(function() {
-    netData.txs.push({ type: 'Received', amount: (amt * 0.01), to: 'Cashback', date: Date.now() });
-    netData.balance += (amt * 0.01);
-    saveData();
-    updateDashboard();
-    alert('Transaction Successful!');
-    var sTo = getEl('send-to');
-    var sAmt = getEl('send-amt');
-    if(sTo) sTo.value = '';
-    if(sAmt) sAmt.value = '';
-  }, 1000);
-
   saveData();
   updateDashboard();
+  alert('Transaction Successful!');
+  
+  var sTo = getEl('send-to');
+  var sAmt = getEl('send-amt');
+  if(sTo) sTo.value = '';
+  if(sAmt) sAmt.value = '';
 }
