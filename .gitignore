@@ -1,90 +1,48 @@
-# ===============================
-# Browser Extension
-# ===============================
-*.crx
-*.xpi
-browser-extension.pem
-
-# ===============================
-# Archives / Packages
-# ===============================
-*.zip
-*.tar
-*.gz
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-
-# ===============================
-# Build Artifacts
-# ===============================
-dist/
-build/
+```
+# Compiled and build artifacts
 target/
-*.min.js
-*.min.css
-*.bundle.js
 
-# ===============================
-# Logs
-# ===============================
+# Dependencies
+Cargo.lock
+
+# Logs and temp files
 *.log
+*.tmp
+*.swp
 
-# ===============================
 # Environment
-# ===============================
 .env
 .env.local
-*.env.*
+.env.*
 
-# ===============================
-# Dependencies
-# ===============================
-node_modules/
+# Editors
+.vscode/
+.idea/
 
-# ===============================
-# Coverage
-# ===============================
+# Coverage reports
 coverage/
 htmlcov/
-*.coverage
+.coverage
 
-# ===============================
-# Python
-# ===============================
+# MyPy cache
+.mypy_cache/
+
+# Pytest cache
+.pytest_cache/
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-*.so
 
-# ===============================
-# Compiled Languages
-# ===============================
-*.class
-*.jar
-*.war
-*.ear
-*.dll
-*.so
-*.dylib
-*.rlib
+# Distribution / packaging
+.dist-info/
+.egg-info/
+.eggs/
+pip-wheel-metadata/
 
-# ===============================
-# Editor
-# ===============================
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# ===============================
-# OS Files
-# ===============================
+# OS generated files
 .DS_Store
 Thumbs.db
+```

@@ -347,10 +347,10 @@ fn App() -> Element {
         let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about";
         match Wallet::from_mnemonic(mnemonic) {
             Ok(wallet) => {
-                if let Ok(addr): Result<String, _> = wallet.derive_eth_address() {
+                if let Ok(addr) = wallet.derive_eth_address() {
                     eth_address.set(addr);
                 }
-                if let Ok(addr): Result<String, _> = wallet.derive_solana_address() {
+                if let Ok(addr) = wallet.derive_solana_address() {
                     sol_address.set(addr);
                 }
                 wallet_initialized.set(true);
