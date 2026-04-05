@@ -1,7 +1,5 @@
 // X-OS Kernel Interface — Cross-platform wallet client
-
 use serde::{Deserialize, Serialize};
-
 #[derive(Debug, Serialize, Deserialize)]
 pub enum WalletRequest {
     Init { mnemonic: String },
@@ -10,23 +8,17 @@ pub enum WalletRequest {
     SignTransaction { chain: u32, tx_data: Vec<u8> },
     GetBalance { chain: u32 },
 }
-
 #[derive(Debug, Serialize, Deserialize)]
 pub enum WalletResponse {
     Success { data: Vec<u8> },
     Error { message: String },
 }
-
 pub struct WalletClient {
-    // Windows support — placeholder for future socket connection
     #[allow(dead_code)]
     _stream: Option<std::net::TcpStream>,
 }
-
 impl WalletClient {
     pub fn new() -> Result<Self, String> {
-        // For now, return a client without connection
-        // Scheme daemon is optional on Windows
         Ok(Self { _stream: None })
     }
     
@@ -47,7 +39,7 @@ impl WalletClient {
     }
     
     pub fn wallet_sign_transaction(&self, _chain: u32, _tx_data: &[u8], sig: &mut [u8]) -> Result<usize, String> {
-        let mock_sig = vec![0u8; 64];
+        let mock_sig = [0u8; 64];
         let len = mock_sig.len().min(sig.len());
         sig[..len].copy_from_slice(&mock_sig[..len]);
         Ok(len)

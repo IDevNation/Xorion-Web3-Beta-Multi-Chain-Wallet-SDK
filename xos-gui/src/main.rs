@@ -4,6 +4,7 @@ mod components;
 
 use components::{Dashboard, Receive, Send, Settings};
 use dioxus::prelude::*;
+use xorion_web3_sdk::Wallet;
 
 /// Global CSS for the dark theme.
 const GLOBAL_CSS: &str = r#"
@@ -333,27 +334,23 @@ fn main() {
     dioxus::launch(App);
 }
 
-/// Root application component.
 fn App() -> Element {
-    // Active page: "dashboard" | "send" | "receive" | "settings"
     let mut active_page = use_signal(|| "dashboard".to_string());
 
-    // Wallet state
     let mut wallet_initialized = use_signal(|| false);
     let mut eth_address = use_signal(String::new);
     let mut sol_address = use_signal(String::new);
     let eth_balance = use_signal(|| "0".to_string());
     let sol_balance = use_signal(|| "0".to_string());
 
-    // Initialize wallet on first render
     let _init = use_resource(move || async move {
         let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about";
-        match xos_sdk::Wallet::from_mnemonic(mnemonic) {
+        match Wallet::from_mnemonic(mnemonic) {
             Ok(wallet) => {
-                if let Ok(addr) = wallet.derive_eth_address() {
+                if let Ok(addr): Result<String, _> = wallet.derive_eth_address() {
                     eth_address.set(addr);
                 }
-                if let Ok(addr) = wallet.derive_solana_address() {
+                if let Ok(addr): Result<String, _> = wallet.derive_solana_address() {
                     sol_address.set(addr);
                 }
                 wallet_initialized.set(true);
@@ -367,7 +364,6 @@ fn App() -> Element {
     rsx! {
         style { {GLOBAL_CSS} }
         div { class: "app-container",
-            // ── Sidebar ──
             div { class: "sidebar",
                 div { class: "sidebar-logo", "XORION" }
 
@@ -396,7 +392,6 @@ fn App() -> Element {
                     "Settings"
                 }
 
-                // Status bar at bottom
                 div { class: "status-bar",
                     div { class: "status-dot" }
                     if *wallet_initialized.read() {
@@ -407,7 +402,6 @@ fn App() -> Element {
                 }
             }
 
-            // ── Main content ──
             div { class: "main-content",
                 match active_page.read().as_str() {
                     "dashboard" => rsx! {
